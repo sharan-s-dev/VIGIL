@@ -1,47 +1,99 @@
 # VIGIL — The Offline Memory Archive
 
-## One-line pitch
+> **The cloud is not the only place a memory can live.**
 
-VIGIL is a private digital ofrenda that keeps family stories on your own machine and uses an open-weight model to return them as gentle, grounded “echoes.”
+This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 4: Ghost in the Machine](https://dev.to/challenges/hacktoberfest-week4-2026-10-26).
 
-## The story
+## What I Built
 
-The most important things we hand to technology are often the things we should not hand to a platform: a grandfather's recipe, a voice note from a parent, the tiny details that make a person more than a name. VIGIL is a local-first memory archive for those fragments.
+VIGIL is a private digital ofrenda for preserving the stories, rituals, and small details that make a person impossible to forget.
 
-You can enter a memory, attach a local artifact, and return to it later through search or a chronological archive. When you want a reflection, VIGIL can ask a local Ollama model to create an “echo” using only the selected story. The original stays beside the generated text. If no model or internet is available, a deterministic local Whisperer still creates a small ritual prompt, so the core experience survives offline.
+You can record a memory about someone, search the local archive, and ask for a short “echo” of it. The echo is clearly marked as machine-generated and is always shown beside the original story. Nothing is silently rewritten, and no account is required.
 
-## Why open innovation mattered
+I interpreted **Ghost in the Machine** as a question about what happens when a machine reflects something deeply human back to us. The “ghost” in VIGIL is not a fake resurrection. It is the signal that remains in a recipe, a voice, a place, or a phrase someone left behind.
 
-An API-only memory product would make the most intimate part of this project dependent on a company, a network connection, and a policy that could change. Open-weight inference gives VIGIL a different contract: the keeper chooses the model, the model can be swapped or fine-tuned, and the story never has to leave the room.
+## Demo
 
-The open approach also made the product more honest. We could show exactly when a model was used, preserve the source text, build an offline fallback, and make export a first-class feature rather than an afterthought. “Private” is not a marketing promise here; it is an architecture made of browser storage and a localhost-only model adapter.
+**[Open VIGIL on GitHub Pages →](https://sharan-s-dev.github.io/VIGIL/)**
 
-## How it works
+The demo is static, requires no sign-in, and works through the offline reflection path immediately.
 
-1. The browser stores structured memories in `localStorage`.
-2. Search runs over the local archive.
-3. The **Local open model** option sends only the selected memory to an Ollama server on `localhost`.
-4. The fallback Whisperer uses no network and no model endpoint.
-5. JSON export makes the archive portable and user-owned.
+### The 60-second demo
 
-## What I would build next
+1. Notice the **LOCAL ONLY** status in the header.
+2. Open **The orange radio**.
+3. Choose **Ask for an echo** and show the offline Whisperer response.
+4. Switch to **Local open model** if Ollama is running.
+5. Add one new memory with a sensory detail.
+6. Search for `radio` or `music`.
+7. Export the archive and show that it is portable JSON.
 
-- optional on-device speech-to-text with Whisper.cpp
-- local image embeddings for “find the summer kitchen” search
-- encrypted archive files with a passphrase held only by the keeper
-- a small family-specific LoRA adapter, trained only on consented stories
+## Code
 
-## Demo path
+**[View the source on GitHub →](https://github.com/sharan-s-dev/VIGIL)**
 
-1. Open VIGIL and notice the **LOCAL ONLY** watch indicator.
-2. Use the seeded sample memories to open “The orange radio.”
-3. Generate an echo in fallback mode, then switch to **Local open model** if Ollama is running.
-4. Add a new memory with a detail only a human would think to preserve.
-5. Search for `marigold` or `radio`.
-6. Export the archive and point out that no account or server was involved.
+The project is intentionally small and inspectable. There is no framework, build pipeline, hosted database, or hidden API layer.
+
+## How I Built It
+
+VIGIL has two reflection engines:
+
+1. **Whisperer — deterministic offline fallback:** a local, no-network reflection path that keeps the product functional when there is no model and no internet.
+2. **Local open model — Ollama:** an optional adapter that sends the selected memory to Ollama on `localhost`, using an open-weight model such as `llama3.2:3b`.
+
+The rest of the product is local-first JavaScript:
+
+- structured memories are stored in browser `localStorage`;
+- search runs over the local archive;
+- export/import uses portable JSON;
+- generated echoes are displayed separately from source memories;
+- the GitHub Pages version is a zero-build static site.
+
+There is no VIGIL server. When the local model is selected, the request goes directly from the browser to the user's own Ollama process.
+
+## Why Does Open Innovation Matter?
+
+The data in a memory archive is exactly the kind of data that should not become a platform's training set, product surface, or permanent dependency.
+
+A closed AI API would make VIGIL's central promise a policy statement: *trust us, we will keep your story private*. Open local inference makes that boundary visible in the architecture. The keeper can inspect the code, choose the model, swap the model, change the prompt, run a smaller model on an older laptop, or remove AI entirely and still keep the archive.
+
+Open innovation also made failure a first-class design constraint. If Ollama is unavailable, VIGIL does not break or pretend that a remote model answered. It falls back to a clearly labelled local reflection. If the internet disappears, capture, search, export, and the core ritual still work.
+
+The strongest design decision is that the model is not the owner of the memory. It is an instrument the keeper can put down.
+
+## My Agent Session
+
+<!-- Save this coding session with DevRelay and replace the placeholder before publishing. -->
+
+`[Add the saved DevRelay session link here]`
+
+## The Spirit of It
+
+The moment I wanted the demo to land was small: a person opens **The orange radio**, reads a memory about a kitchen and a fading bolero signal, and then sees an echo that stays humble. It does not claim to be Abuela Elena. It does not invent a message from beyond the grave. It simply notices that the detail was kept.
+
+That restraint is the point. A memory does not need a cloud-sized model to matter. It needs a safe place to remain.
+
+## Prize Categories
+
+- Open-source AI
+- Local-first / offline inference
+- Privacy-conscious AI
+
+<!-- If the challenge lists official partner categories, replace these with the exact category names before publishing. -->
+
+## What I Would Build Next
+
+- on-device speech-to-text with Whisper.cpp;
+- local image embeddings for “find the summer kitchen” search;
+- encrypted archive files with a passphrase held only by the keeper;
+- consent-based family-specific LoRA adapters.
 
 ## Links
 
-- Live demo: `http://localhost:4173`
-- Source: add repository link here
-- Session recording: add DevRelay session link here
+- **Live demo:** https://sharan-s-dev.github.io/VIGIL/
+- **Source:** https://github.com/sharan-s-dev/VIGIL
+- **License:** MIT
+
+<!-- Team Submissions: credit teammates by listing their DEV usernames here if applicable. -->
+
+<!-- Thanks for participating! -->
