@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101315" />
+    <meta name="description" content="VIGIL is a private, offline-first memory archive powered by open AI." />
+    <title>VIGIL — The Offline Memory Archive</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="VIGIL home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>VIGIL</span>
+          <span class="brand-sub">MEMORY / ARCHIVE</span>
+        </a>
+        <div class="topbar-actions">
+          <span class="connection-pill"><span class="pulse-dot"></span><span id="connection-label">LOCAL ONLY</span></span>
+          <button class="icon-button" id="export-button" title="Export your archive" aria-label="Export your archive">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 18v2h14v-2" /></svg>
+          </button>
+          <button class="icon-button" id="about-button" title="About VIGIL" aria-label="About VIGIL">?</button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero section-wrap">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> A quiet place for what remains</div>
+            <h1>Keep the<br /><em>signal</em> alive.</h1>
+            <p class="hero-lede">A private archive for the stories, rituals, and small details that make a person impossible to forget.</p>
+            <div class="hero-actions">
+              <button class="primary-button" id="new-memory-button"><span>+</span> Preserve a memory</button>
+              <button class="text-button" id="scroll-archive-button">Enter the archive <span>↓</span></button>
+            </div>
+          </div>
+          <div class="watch-visual" aria-label="A visualisation of your local archive">
+            <div class="watch-caption"><span>THE NIGHT WATCH</span><span id="watch-time">00:00:00</span></div>
+            <div class="orbital-system">
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="orbit orbit-three"></div>
+              <div class="ghost-orb"><div class="orb-core"></div><span class="orb-face">◌</span></div>
+              <span class="orbit-dot dot-one"></span><span class="orbit-dot dot-two"></span><span class="orbit-dot dot-three"></span>
+            </div>
+            <div class="watch-status"><span class="status-spark">✦</span><span id="watch-status-copy">The archive is awake.</span></div>
+          </div>
+        </section>
+
+        <section class="stats-strip section-wrap" aria-label="Archive status">
+          <div class="stat"><span class="stat-value" id="memory-count">00</span><span class="stat-label">memories kept</span></div>
+          <div class="stat"><span class="stat-value" id="people-count">00</span><span class="stat-label">names remembered</span></div>
+          <div class="stat"><span class="stat-value" id="word-count">0</span><span class="stat-label">words held close</span></div>
+          <div class="stat stat-privacy"><span class="privacy-lock">⌁</span><span><strong>Nothing leaves</strong><br />this machine.</span></div>
+        </section>
+
+        <section class="archive-section section-wrap" id="archive">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> Your collected light</div>
+              <h2>The archive</h2>
+            </div>
+            <div class="archive-tools">
+              <label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 5 5" /></svg><input id="search-input" type="search" placeholder="Search the archive" autocomplete="off" /></label>
+              <button class="filter-button active" data-filter="all">All <span id="all-filter-count">00</span></button>
+              <button class="filter-button" data-filter="memory">Memories</button>
+            </div>
+          </div>
+          <div class="archive-grid" id="archive-grid"></div>
+          <div class="empty-state hidden" id="empty-state">
+            <div class="empty-icon">◌</div>
+            <h3>No signal found</h3>
+            <p>Try another word, or preserve the first detail that comes to mind.</p>
+            <button class="secondary-button" id="empty-add-button">Add a memory</button>
+          </div>
+        </section>
+
+        <section class="model-section section-wrap">
+          <div class="model-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> The ghost in the machine</div>
+            <h2>Ask for an <em>echo.</em></h2>
+            <p>VIGIL never invents a life for someone. It reads one selected memory and returns a small reflection — clearly marked as machine-made, always beside the original.</p>
+            <div class="model-choice">
+              <span class="model-choice-label">REFLECTION ENGINE</span>
+              <div class="segmented-control" role="group" aria-label="Choose reflection engine">
+                <button class="segment active" data-engine="fallback">Whisperer <small>offline</small></button>
+                <button class="segment" data-engine="ollama">Local open model <small>Ollama</small></button>
+              </div>
+            </div>
+            <div class="model-note"><span>✦</span><span id="engine-note">No server. No account. A tiny local ritual engine.</span></div>
+          </div>
+          <div class="echo-card" id="echo-card">
+            <div class="echo-card-top"><span class="echo-label">LATEST ECHO</span><span class="echo-sigil">✳</span></div>
+            <div class="echo-placeholder" id="echo-placeholder"><span>Choose a memory above<br />to let it speak back.</span></div>
+            <div class="echo-result hidden" id="echo-result"></div>
+            <div class="echo-footer"><span id="echo-source">Awaiting a source</span><button class="small-action hidden" id="copy-echo-button">Copy echo</button></div>
+          </div>
+        </section>
+
+        <section class="manifesto section-wrap">
+          <div class="manifesto-rule"></div>
+          <blockquote>“The cloud is not the only place a memory can live.”</blockquote>
+          <p>Open models make the boundary visible. Your story stays yours. The model is a tool, not a landlord.</p>
+        </section>
+      </main>
+
+      <footer class="footer section-wrap">
+        <div class="footer-brand"><span class="brand-mark small"><i></i><i></i><i></i></span><span>VIGIL</span></div>
+        <span>BUILT FOR THE STORIES THAT OUTLIVE US</span>
+        <button class="footer-link" id="import-button">Import archive</button>
+        <input type="file" id="import-input" accept="application/json" hidden />
+      </footer>
+    </div>
+
+    <div class="modal-backdrop hidden" id="memory-modal" role="dialog" aria-modal="true" aria-labelledby="memory-modal-title">
+      <div class="modal memory-modal">
+        <button class="modal-close" data-close-modal aria-label="Close">×</button>
+        <div class="eyebrow"><span class="eyebrow-line"></span> Add to the ofrenda</div>
+        <h2 id="memory-modal-title">Preserve a <em>memory.</em></h2>
+        <p class="modal-intro">The small details are the ones that bring someone back.</p>
+        <form id="memory-form">
+          <div class="form-grid">
+            <label class="field field-wide"><span>Memory title <b>*</b></span><input required name="title" placeholder="The orange radio" maxlength="80" /></label>
+            <label class="field"><span>Who is remembered <b>*</b></span><input required name="person" placeholder="Abuela Elena" maxlength="60" /></label>
+            <label class="field"><span>When</span><input name="date" type="text" placeholder="Summer, 1998" maxlength="40" /></label>
+            <label class="field"><span>Where</span><input name="place" placeholder="Her kitchen in Oaxaca" maxlength="60" /></label>
+            <label class="field"><span>Tags</span><input name="tags" placeholder="recipe, music, orange" maxlength="100" /></label>
+            <label class="field field-wide"><span>The memory <b>*</b></span><textarea required name="body" rows="5" placeholder="What do you want the future to know? Include a sound, smell, saying, or detail..."></textarea></label>
+          </div>
+          <div class="form-bottom"><span class="local-form-note">⌁ Saved only in this browser</span><button class="primary-button" type="submit">Place in the archive <span>→</span></button></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-backdrop hidden" id="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <div class="modal detail-modal"><button class="modal-close" data-close-modal aria-label="Close">×</button><div id="detail-content"></div></div>
+    </div>
+
+    <div class="modal-backdrop hidden" id="about-modal" role="dialog" aria-modal="true" aria-labelledby="about-title">
+      <div class="modal about-modal"><button class="modal-close" data-close-modal aria-label="Close">×</button><div class="eyebrow"><span class="eyebrow-line"></span> About the project</div><h2 id="about-title">Memory, <em>unlocked.</em></h2><p>VIGIL is a local-first experiment in keeping the most human data away from the default cloud. Your archive lives in browser storage. The reflection engine can be a deterministic offline prompt, or a model running on your own machine through Ollama.</p><div class="about-points"><div><strong>01</strong><span>Private by architecture, not by promise.</span></div><div><strong>02</strong><span>Open model, swappable voice.</span></div><div><strong>03</strong><span>Portable JSON. No lock-in.</span></div></div><p class="about-footnote">Made for the Ghost in the Machine open AI challenge.</p></div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+# Local OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+
+# Local runtime output
+*.log
+coverage/
+node_modules/

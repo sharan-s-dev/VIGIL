@@ -1,0 +1,10 @@
+{
+  "name": "vigil-offline-memory-archive",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VIGIL — a local-first memory archive and digital ofrenda powered by open AI.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
