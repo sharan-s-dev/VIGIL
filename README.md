@@ -21,9 +21,7 @@ The original story stays visible beside every generated reflection. The model is
 
 ## Why this exists
 
-The most intimate things we give technology are often the things we should not give to a platform: a grandmother's recipe, a parent's voice, a name that only exists in one family's vocabulary.
-
-Most AI memory products make the cloud the default owner of that intimacy. VIGIL reverses the relationship. The archive belongs to the keeper. The model is a replaceable instrument.
+Every intimate thing we give to cloud AI—our personal lore, unwritten recipes, life rituals, and memories of the people we cherish—becomes someone else's training data. VIGIL reverses that contract: an offline-first, zero-dependency memory vault where human stories stay strictly on your machine, reflected by open-weight local AI that you control, inspect, and can put down at any time.
 
 ## Why open AI matters
 
