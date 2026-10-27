@@ -19,6 +19,12 @@
 
 The original story stays visible beside every generated reflection. The model is never allowed to become the source of truth.
 
+### Watch the Demo 
+
+[![Watch the VIGIL Walkthrough](https://i.ytimg.com/vi/m7NQ6o_PVRA/hqdefault.jpg)](https://youtu.be/m7NQ6o_PVRA)
+
+*(Click the image to watch the demo on YouTube)*
+
 ## Why this exists
 
 Every intimate thing we give to cloud AI—our personal lore, unwritten recipes, life rituals, and memories of the people we cherish—becomes someone else's training data. VIGIL reverses that contract: an offline-first, zero-dependency memory vault where human stories stay strictly on your machine, reflected by open-weight local AI that you control, inspect, and can put down at any time.
