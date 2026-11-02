@@ -14,6 +14,7 @@
 **[Open the live demo →](https://sharan-s-dev.github.io/VIGIL/)** · **[Watch the walkthrough →](https://youtu.be/m7NQ6o_PVRA)** · **[Read the architecture →](ARCHITECTURE.md)**
 
 [![Watch the VIGIL walkthrough](https://i.ytimg.com/vi/m7NQ6o_PVRA/hqdefault.jpg)](https://youtu.be/m7NQ6o_PVRA)
+> This walkthrough focuses on the browser experience. Since recording, the repository has added stronger persistence, archive validation, model request timeouts and cancellation, stale-response protection, a hardened local server, automated smoke tests, and test-gated deployment. The visual flow remains the same; Ollama is an optional local enhancement.
 
 ### The 60-second path
 
