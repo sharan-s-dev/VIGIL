@@ -2,8 +2,6 @@
 
 > **The cloud is not the only place a memory can live.**
 
-This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 4: Ghost in the Machine](https://dev.to/challenges/hacktoberfest-week4-2026-10-26).
-
 ## What I Built
 
 VIGIL is a private digital ofrenda for preserving the stories, rituals, and small details that make a person impossible to forget.
