@@ -19,7 +19,7 @@
 
 The original story stays visible beside every generated reflection. The model is never allowed to become the source of truth.
 
-### Watch the Demo 
+### Watch the Demo
 
 [![Watch the VIGIL Walkthrough](https://i.ytimg.com/vi/m7NQ6o_PVRA/hqdefault.jpg)](https://youtu.be/m7NQ6o_PVRA)
 
@@ -33,7 +33,7 @@ Every intimate thing we give to cloud AI—our personal lore, unwritten recipes,
 
 VIGIL is built around an open, local model path—not decorated with AI after the fact.
 
-- **Private by architecture:** memories are stored in browser `localStorage`. There is no account, hosted database, analytics pipeline, or required API key.
+- **Private by architecture:** memories are stored in browser IndexedDB, with a localStorage fallback. There is no account, hosted database, analytics pipeline, or required API key.
 - **Open and swappable:** use Ollama with an open-weight model such as `llama3.2:3b`, replace the model, change its prompt, or add a family-specific adapter later.
 - **Offline by default:** capture, search, archive, export, and the Whisperer fallback require no network and no model server.
 - **Honest about generation:** an echo is visibly labelled as an interpretation. The source memory is never silently rewritten.
@@ -52,7 +52,8 @@ With a closed API, the privacy boundary is a promise. With VIGIL, it is inspecta
         │
         └── no model / no internet ──▶ deterministic Whisperer
 
-  Browser localStorage ◀── capture · search · export · import
+  Browser IndexedDB ◀── capture · search · export · import
+       localStorage fallback for older / restricted browsers
 ```
 
 The public GitHub Pages demo is static and works through the offline path. When Ollama is selected, only the chosen memory is sent to `http://localhost:11434`; it does not pass through a VIGIL server.
@@ -68,6 +69,14 @@ npm start
 ```
 
 Open <http://localhost:4173>.
+
+Run the verification suite with:
+
+```bash
+npm test
+```
+
+The test suite verifies the local server's public file allowlist, method handling, response headers, and `HEAD` behaviour.
 
 ### Turn on local open-weight inference
 
@@ -88,13 +97,14 @@ Choose **Local open model** in VIGIL. If Ollama is unavailable, VIGIL falls back
 | Archive search | Local full-text search with no server-side index |
 | Ask for an echo | Grounded reflection through offline fallback or local Ollama |
 | Source protection | Original story remains separate from generated text |
-| Export / import | Portable JSON ownership instead of platform lock-in |
+| Export / import | Portable JSON ownership with size and schema validation |
 | Night watch | A visible, calm privacy status rather than invisible infrastructure |
 | GitHub Pages | A zero-build static demo that works without a backend |
+| Local server | Allowlisted files, safe methods, and browser security headers |
 
 ## Honest limitations
 
-VIGIL is a privacy-conscious prototype, not encrypted archival storage. Data lives in the current browser profile; clearing browser storage removes the local copy. Export the JSON and keep an encrypted backup for anything irreplaceable. The public demo uses sample memories so visitors can understand the product without entering personal data.
+VIGIL is a privacy-conscious local application, not encrypted archival storage. Data lives in the current browser profile; clearing browser storage removes the local copy. Export the JSON and keep an encrypted backup for anything irreplaceable. The public demo uses sample memories so visitors can understand the product without entering personal data. Imported archives are bounded and validated before replacing the current archive.
 
 ## Roadmap
 
@@ -108,10 +118,13 @@ VIGIL is a privacy-conscious prototype, not encrypted archival storage. Data liv
 
 - `index.html` — accessible application shell
 - `styles.css` — responsive visual system and reduced-motion support
-- `app.js` — local data layer, search, model adapter, fallback, export/import
-- `server.js` — tiny zero-dependency local server
+- `app.js` — IndexedDB storage, validation, search, model adapter, fallback, export/import
+- `server.js` — allowlisted zero-dependency local server with security headers
+- `test/server.test.js` — automated server hardening smoke tests
 - `SUBMISSION.md` — publish-ready challenge post
 - `.github/workflows/pages.yml` — automatic GitHub Pages deployment
+- `ARCHITECTURE.md` — runtime boundaries and threat model
+- `SECURITY.md` — privacy guarantees and responsible disclosure
 
 ## License
 

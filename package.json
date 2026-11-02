@@ -5,6 +5,7 @@
   "description": "VIGIL — a local-first memory archive and digital ofrenda powered by open AI.",
   "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node --test"
   }
 }

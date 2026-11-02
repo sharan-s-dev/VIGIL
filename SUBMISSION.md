@@ -41,7 +41,7 @@ VIGIL has two reflection engines:
 
 The rest of the product is local-first JavaScript:
 
-- structured memories are stored in browser `localStorage`;
+- structured memories are stored in browser IndexedDB, with a localStorage fallback;
 - search runs over the local archive;
 - export/import uses portable JSON;
 - generated echoes are displayed separately from source memories;

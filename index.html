@@ -66,7 +66,7 @@
             <div class="archive-tools">
               <label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 5 5" /></svg><input id="search-input" type="search" placeholder="Search the archive" autocomplete="off" /></label>
               <button class="filter-button active" data-filter="all">All <span id="all-filter-count">00</span></button>
-              <button class="filter-button" data-filter="memory">Memories</button>
+              <button class="filter-button" data-filter="recent">Recent</button>
             </div>
           </div>
           <div class="archive-grid" id="archive-grid"></div>
@@ -95,7 +95,7 @@
           <div class="echo-card" id="echo-card">
             <div class="echo-card-top"><span class="echo-label">LATEST ECHO</span><span class="echo-sigil">✳</span></div>
             <div class="echo-placeholder" id="echo-placeholder"><span>Choose a memory above<br />to let it speak back.</span></div>
-            <div class="echo-result hidden" id="echo-result"></div>
+            <div class="echo-result hidden" id="echo-result" role="status" aria-live="polite" aria-busy="false"></div>
             <div class="echo-footer"><span id="echo-source">Awaiting a source</span><button class="small-action hidden" id="copy-echo-button">Copy echo</button></div>
           </div>
         </section>
@@ -123,12 +123,12 @@
         <p class="modal-intro">The small details are the ones that bring someone back.</p>
         <form id="memory-form">
           <div class="form-grid">
-            <label class="field field-wide"><span>Memory title <b>*</b></span><input required name="title" placeholder="The orange radio" maxlength="80" /></label>
-            <label class="field"><span>Who is remembered <b>*</b></span><input required name="person" placeholder="Abuela Elena" maxlength="60" /></label>
-            <label class="field"><span>When</span><input name="date" type="text" placeholder="Summer, 1998" maxlength="40" /></label>
-            <label class="field"><span>Where</span><input name="place" placeholder="Her kitchen in Oaxaca" maxlength="60" /></label>
-            <label class="field"><span>Tags</span><input name="tags" placeholder="recipe, music, orange" maxlength="100" /></label>
-            <label class="field field-wide"><span>The memory <b>*</b></span><textarea required name="body" rows="5" placeholder="What do you want the future to know? Include a sound, smell, saying, or detail..."></textarea></label>
+            <label class="field field-wide"><span>Memory title <b>*</b></span><input required name="title" placeholder="The orange radio" maxlength="120" /></label>
+            <label class="field"><span>Who is remembered <b>*</b></span><input required name="person" placeholder="Abuela Elena" maxlength="100" /></label>
+            <label class="field"><span>When</span><input name="date" type="text" placeholder="Summer, 1998" maxlength="80" /></label>
+            <label class="field"><span>Where</span><input name="place" placeholder="Her kitchen in Oaxaca" maxlength="160" /></label>
+            <label class="field"><span>Tags</span><input name="tags" placeholder="recipe, music, orange" maxlength="400" /></label>
+            <label class="field field-wide"><span>The memory <b>*</b></span><textarea required name="body" rows="5" maxlength="20000" placeholder="What do you want the future to know? Include a sound, smell, saying, or detail..."></textarea></label>
           </div>
           <div class="form-bottom"><span class="local-form-note">⌁ Saved only in this browser</span><button class="primary-button" type="submit">Place in the archive <span>→</span></button></div>
         </form>
